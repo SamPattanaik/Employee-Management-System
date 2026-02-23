@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Login = () => {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const submitHandler = (e) => {
+        e.preventDefault()
+        console.log("Email is", email)
+        console.log("Password is", password)
+
+        setEmail("")
+        setPassword("")
+    }
+
+
   return (
     <div className="min-h-screen w-full flex items-center justify-center">
       <div className="w-full max-w-md border border-emerald-600/40 rounded-2xl shadow-xl p-10">
@@ -9,10 +22,19 @@ const Login = () => {
           Welcome Back
         </h2>
 
-        <form className="flex flex-col gap-5">
+        <form
+        onSubmit={(e)=>{
+            submitHandler(e)
+        }} 
+        className="flex flex-col gap-5"
+        >
           
           <input
             required
+            value={email}
+            onChange={(e)=>{
+                setEmail(e.target.value)
+            }}
             type="email"
             placeholder="Enter your Email"
             className="w-full border-2 border-emerald-500 rounded-full px-5 py-3 text-lg outline-none 
@@ -22,6 +44,10 @@ const Login = () => {
 
           <input
             required
+            value={password}
+            onChange={(e)=>{
+                setPassword(e.target.value)
+            }}
             type="password"
             placeholder="Enter Password"
             className="w-full border-2 border-emerald-500 rounded-full px-5 py-3 text-lg outline-none 
